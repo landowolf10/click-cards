@@ -1,0 +1,105 @@
+/* Botón hamburguesa */
+.hamburger-icon {
+  width: 30px;
+  height: 24px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10001;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+
+  span {
+    height: 3px;
+    width: 100%;
+    background-color: #070707;  // blanco para que contraste sobre rojo o fondo oscuro
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  &.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  &.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  &.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+}
+
+/* Menú lateral */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 250px;
+  height: 100vh;
+  background: #ffffff;  // rojo oscuro
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4);
+  transition: left 0.3s ease;
+  z-index: 10000;
+  padding: 60px 20px 20px; // espacio arriba para hamburger
+
+  &.open {
+    left: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 15px 0;
+      cursor: pointer;
+      font-size: 18px;
+      color: rgb(248, 5, 5);
+      display: flex;
+      align-items: center;
+      gap: 12px; // espacio entre ícono y texto
+      transition: color 0.3s;
+
+      &:hover {
+        color: #ffeb3b; // amarillo al pasar mouse
+      }
+
+      /* Ícono con Unicode antes del texto */
+      &::before {
+        content: ''; /* Lo cambiamos en cada li usando clases o data-atributos */
+        display: inline-block;
+        width: 20px;
+        text-align: center;
+        font-size: 20px;
+        color: white;
+        user-select: none;
+      }
+    }
+
+    /* Íconos personalizados para cada opción */
+    li:nth-child(1)::before { content: '🏠'; } /* Inicio */
+    li:nth-child(2)::before { content: 'ℹ️'; } /* Acerca de nosotros */
+    li:nth-child(3)::before { content: '📍'; } /* Dónde encontrarnos */
+    li:nth-child(4)::before { content: '💳'; } /* Conoce nuestras tarjetas */
+    li:nth-child(5)::before { content: '📢'; } /* Ya me anuncio en ClickCards */
+    li:nth-child(6)::before { content: '🤝'; } /* Quiero contratar y anunciarme */
+    li:nth-child(7)::before { content: '✉️'; } /* Contacto */
+  }
+}
+
+.side-menu ul li a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.side-menu ul li a:hover {
+  color: #ffeb3b; // mismo color del hover en el li
+}

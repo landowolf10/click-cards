@@ -1,0 +1,39 @@
+<!-- Ícono hamburguesa (se convierte en X con animación) -->
+<div class="hamburger-icon" [class.open]="isMenuOpen" (click)="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- Menú lateral -->
+<div class="side-menu" [class.open]="isMenuOpen">
+  <ul>
+    <li>
+      <a routerLink="/" (click)="closeMenu()">
+        Inicio
+      </a>
+    </li>
+    <li> 
+       <a routerLink="/about-us" (click)="closeMenu()">
+        Acerca de nosotros
+      </a>
+    </li>
+    <li (click)="closeMenu()">
+      Dónde encontrarnos
+    </li>
+    <li (click)="closeMenu()">
+      Conoce nuestras tarjetas
+    </li>
+    <li>
+      <a routerLink="/login" (click)="closeMenu()">
+        Ya me anuncio en ClickCards
+      </a>
+    </li>
+    <li (click)="closeMenu()">
+      Quiero contratar y anunciarme en ClickCards
+    </li>
+    <li (click)="closeMenu()">
+      Contacto
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,34 @@
+<div class="carousel-container"
+  (pointerdown)="onPointerDown($event)"
+  (pointermove)="onPointerMove($event)"
+  (pointerup)="onPointerUp($event)"
+  (pointercancel)="onPointerUp($event)"
+  (pointerleave)="onPointerUp($event)"
+>
+  <div
+    class="carousel-card"
+    *ngFor="let card of cards; let i = index"
+    [style.transform]="getTransform(i)"
+    [class.active]="i === currentIndex"
+    [routerLink]="['/card', card.cardId]"
+  >
+    <img 
+      [src]="card.image" 
+      [alt]="card.cardName"
+      (click)="onImageClick(card.cardId)"
+    />
+  </div>
+</div>
+
+<div class="promo-section">
+  <img src="assets/images/Zihuatanejo.jpg" alt="Promo Zihuatanejo" class="promo-bg" />
+
+  <div class="promo-text">
+    <h2>ClickCards ¡Un click, muchos ahorros!</h2>
+    <hr />
+    <h3>Todo lo que a TI te conviene en Ixtapa Zihuatanejo</h3>
+    <hr />
+    <p>¡COMPRA! ¡DEGUSTA! ¡EXPLORA!</p>
+  </div>
+</div>
+<app-premium-carousel></app-premium-carousel>

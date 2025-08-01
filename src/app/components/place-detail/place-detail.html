@@ -1,0 +1,17 @@
+<h1>{{ card?.cardName }}</h1>
+<img 
+    [src]="card?.image" 
+    [alt]="card?.cardName" 
+    />
+
+<div class="info">
+  <p><strong>Ciudad:</strong> {{ card?.city }}</p>
+  <p><strong>Lugar:</strong> {{ card?.place }}</p>
+  <p><strong>Categoría:</strong> {{ card?.category }}</p>
+  <p><strong>Premium:</strong> {{ card?.isPremium === 'yes' ? 'Sí' : 'No' }}</p>
+  <p><strong>Creación:</strong> {{ card?.creationDate | date:'medium' }}</p>
+  <p *ngIf="card?.updateDate"><strong>Actualización:</strong> {{ card?.updateDate | date:'medium' }}</p>
+</div>
+<button (click)="onDownloadClick()">
+  Descargar
+</button>

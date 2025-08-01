@@ -1,0 +1,106 @@
+.about-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.main-title {
+  color: #d62828;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #444;
+}
+
+.intro-text {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.intro-text h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.intro-text p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.6;
+}
+
+.values-section {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.value-card {
+  background: #f7f7f7;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 320px;
+  text-align: center;
+}
+
+.value-card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+}
+
+.value-card h4 {
+  color: #d62828;
+  margin-bottom: 0.5rem;
+}
+
+.value-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1.3rem;
+  }
+
+  .intro-text h3 {
+    font-size: 1.2rem;
+  }
+
+  .intro-text p {
+    font-size: 1rem;
+  }
+
+  .value-card {
+    max-width: 100%;
+  }
+}
+
+/* Definimos la animación */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

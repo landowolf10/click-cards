@@ -1,0 +1,94 @@
+<div class="dashboard-container">
+
+  <!-- Totales Generales -->
+  <section class="card general-header">
+    <h1>Dashboard General</h1>
+    <div class="card-row">
+      <div class="info-card">
+        <p>Total de tarjetas visitadas</p>
+        <h2>{{ generalData?.visitedCount }}</h2>
+      </div>
+      <div class="info-card">
+        <p>Total de tarjetas descargadas</p>
+        <h2>{{ generalData?.downloadedCount }}</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filtro por fecha -->
+  <section class="card">
+    <h2 class="section-title">Filtro por fecha</h2>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Enter Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" (dateChange)="onDateChange($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="card-row">
+      <div class="info-card">
+        <p>Total de tarjetas visitadas</p>
+        <h2>{{ todayData?.visitedCount || 0 }}</h2>
+      </div>
+      <div class="info-card">
+        <p>Total de tarjetas descargadas</p>
+        <h2>{{ todayData?.downloadedCount || 0 }}</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rango de fechas -->
+  <section class="card">
+    <h2 class="section-title">Filtro por rango de fechas</h2>
+
+    <div class="date-range">
+      <input type="date" [(ngModel)]="startDate">
+      <input type="date" [(ngModel)]="endDate">
+      <button class="range-btn" (click)="loadRangeData()">
+        <mat-icon>calendar_today</mat-icon> Selecciona rango de fechas
+      </button>
+    </div>
+
+    <div class="card-row">
+      <div class="info-card">
+        <p>Total de tarjetas visitadas</p>
+        <h2>{{ rangeData?.visitedCount || 0 }}</h2>
+      </div>
+      <div class="info-card">
+        <p>Total de tarjetas descargadas</p>
+        <h2>{{ rangeData?.downloadedCount || 0 }}</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filtro por Ciudad -->
+    <section class="city-filter-section">
+    <h3>Filtro por ciudad</h3>
+    <select [(ngModel)]="selectedCity" class="dropdown" (change)="onCityChange($event)">
+        <option value="">Ciudades</option>
+        <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+    </select>
+
+    <div class="card-summary">
+        <div class="card">
+            <p>Total de tarjetas visitadas</p>
+            <h3>{{ cityData?.visitedCount }}</h3>
+        </div>
+        <div class="card">
+            <p>Total de tarjetas descargadas</p>
+            <h3>{{ cityData?.downloadedCount }}</h3>
+        </div>
+    </div>
+    </section>
+
+    <!-- Manejo de Usuarios -->
+    <section class="user-management-section">
+    <h3>Manejo de usuarios</h3>
+    <button class="btn green">Ver asociados</button>
+    <button class="btn light-green">Crear asociado</button>
+    <button class="btn blue">Actualizar asociado</button>
+    <button class="btn red">Eliminar asociado</button>
+    <button class="btn black">Cerrar sesión</button>
+    </section>
+</div>

@@ -1,0 +1,118 @@
+.footer {
+  max-width: 1300px;
+  background-color: #000;
+  color: #fff;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: sans-serif;
+  margin: 0 auto; /* centra el footer */
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box; /* evita que padding + width excedan el ancho */
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-section h3 {
+  color: #f50057;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+
+.footer-section p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.8rem;
+  font-size: 1.3rem;
+}
+
+input,
+textarea {
+  background-color: #1c1c1c;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.8rem;
+  width: 80%;
+  font-size: 0.95rem;
+}
+
+textarea {
+  resize: none;
+  height: 90px;
+}
+
+.stars {
+  color: white;
+  font-size: 1.7rem;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.stars i {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.stars i.selected {
+  color: gold;
+}
+
+button {
+  background-color: #f50057;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  cursor: pointer;
+  width: 100px;
+}
+
+button:hover {
+  background-color: #c51162;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .footer {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .footer-section h3 {
+    font-size: 0.95rem;
+  }
+
+  .footer-section p {
+    font-size: 0.85rem;
+  }
+
+  input,
+  textarea {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+
+  .stars {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 0.95rem;
+    padding: 0.7rem 1rem;
+  }
+}

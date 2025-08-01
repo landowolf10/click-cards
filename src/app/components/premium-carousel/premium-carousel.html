@@ -1,0 +1,56 @@
+<div class="carousel-container"
+  (pointerdown)="onPointerDown($event)"
+  (pointermove)="onPointerMove($event)"
+  (pointerup)="onPointerUp($event)"
+  (pointercancel)="onPointerUp($event)"
+  (pointerleave)="onPointerUp($event)"
+>
+  <div
+    class="carousel-card"
+    *ngFor="let card of cards; let i = index"
+    [style.transform]="getTransform(i)"
+    [class.active]="i === currentIndex"
+    [routerLink]="['/card', card.cardId]"
+  >
+    <img 
+      [src]="card.image" 
+      [alt]="card.cardName"
+      (click)="onImageClick(card.cardId)"
+    />
+  </div>
+</div>
+
+<div class="categories-grid">
+  <div
+    class="category-tile"
+    *ngFor="let cat of categories"
+    (click)="onCategoryClick(cat.category)"
+  >
+    <img [src]="cat.image" alt="{{ cat.text }}" />
+    <p>{{ cat.text }}</p>
+  </div>
+</div>
+
+
+<div class="location-cards-grid">
+  <div
+    class="location-card"
+    *ngFor="let loc of locations"
+    (click)="openLocationModal(loc)"
+  >
+    <img [src]="loc.image" [alt]="loc.name" />
+    <p class="location-title">{{ loc.name }}</p>
+  </div>
+</div>
+
+<!-- Tarjeta informativa con botón -->
+<div class="info-card">
+  <img src="assets/images/thinking.png" alt="Mujer pensando" />
+  <div class="info-text">
+    <h3>Título descriptivo</h3>
+    <p>
+      Descripción detallada del contenido de esta tarjeta. Puede contener varias líneas de texto informativo.
+    </p>
+    <button class="view-more-btn" (click)="openGeneralInfo()">Ver más</button>
+  </div>
+</div>

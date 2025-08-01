@@ -1,0 +1,40 @@
+<footer class="footer">
+  <div class="footer-section">
+    <h3>CONTACTANOS</h3>
+    <p>Email:<br />clickcardsdeals@gmail.com</p>
+    <p>Tel: (55) 2620 0507</p>
+    <div class="social-icons">
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-linkedin-in"></i>
+      <i class="fab fa-instagram"></i>
+    </div>
+  </div>
+
+  <div class="footer-section">
+    <h3>CALIFICACIÓN</h3>
+    <input
+      type="text"
+      placeholder="Nombre Completo"
+      [(ngModel)]="nombreCompleto"
+      name="nombre"
+    />
+
+    <p>Califícanos</p>
+    <div class="stars">
+      <i
+        class="fas fa-star"
+        *ngFor="let star of [1, 2, 3, 4, 5]"
+        [class.selected]="star <= estrellas"
+        (click)="setEstrellas(star)"
+      ></i>
+    </div>
+
+    <textarea
+      placeholder="Déjanos un Comentario"
+      [(ngModel)]="comentario"
+      name="comentario"
+    ></textarea>
+
+    <button (click)="enviarFormulario()">Enviar</button>
+  </div>
+</footer>
