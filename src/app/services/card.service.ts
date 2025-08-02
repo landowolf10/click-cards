@@ -5,7 +5,7 @@ import { Card } from '../models/card.model';
 
 @Injectable({ providedIn: 'root' })
 export class CardService {
-  private baseUrl = 'http://192.168.0.1:8000/api/v1';
+  private baseUrl = 'http://192.168.0.12:8000/api/v1';
   //api/v1/card/$clientId
 
   constructor(private http: HttpClient) {}

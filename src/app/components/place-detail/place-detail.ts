@@ -17,6 +17,15 @@ export class PlaceDetail implements OnInit {
   private cardService = inject(CardService);
   private cardStatusService = inject(CardStatusService);
 
+  labels: string[] = [
+    "Galería de fotos",
+    "Información general",
+    "Mapa de localización",
+    "Restaurantes",
+    "Hoteles",
+    "Atracciones"
+  ];
+
   ngOnInit() {
     const cardId = this.route.snapshot.paramMap.get('id');
     if (cardId) {
