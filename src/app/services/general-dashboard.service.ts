@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class GeneralDashboardService {
-  private baseUrl = 'http://192.168.0.12:8000/api/v1';
+  private baseUrl = 'http://192.168.0.6:8000/api/v1';
 
   constructor(private http: HttpClient) {}
 

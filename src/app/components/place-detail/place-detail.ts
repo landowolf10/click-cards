@@ -1,9 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CardService } from '../../services/card.service';
 import { Card } from '../../models/card.model';
-import { CardStatusService } from '../../services/card-status.service';
+import { DownloadService } from '../../services/download.service';
+import { PlacesService } from '../../services/places-service';
 
 @Component({
   selector: 'app-place-detail',
@@ -13,20 +14,37 @@ import { CardStatusService } from '../../services/card-status.service';
 })
 export class PlaceDetail implements OnInit {
   card?: Card;
+  isPlace = true;
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private cardService = inject(CardService);
-  private cardStatusService = inject(CardStatusService);
+  private downloadService = inject(DownloadService);
+  private placesService = inject(PlacesService);
 
   labels: string[] = [
-    "Galería de fotos",
     "Información general",
+    "Galería de fotos",
     "Mapa de localización",
     "Restaurantes",
     "Hoteles",
     "Atracciones"
   ];
 
+  normalCardLabels: string[] = [
+    "Menu",
+    "Galería de fotos",
+    "Servicios extra",
+    "Información y reservaciones",
+    "Descarga tu cupón",
+    "Mapa de localización"
+  ];
+
   ngOnInit() {
+    const queryParams = this.route.snapshot.queryParams;
+    if (queryParams['isPlace'] !== undefined) {
+      this.isPlace = queryParams['isPlace'] === 'true';
+    }
+    
     const cardId = this.route.snapshot.paramMap.get('id');
     if (cardId) {
       this.cardService.getCardById(+cardId).subscribe({
@@ -36,43 +54,72 @@ export class PlaceDetail implements OnInit {
     }
   }
 
-  onDownloadClick() {
+  onLabelClick(label: string) {
     if (!this.card?.cardId) return;
 
-    // Descargar imagen o PDF aquí...
-    this.downloadCard();
+    console.log('Is place: ', this.isPlace);
 
-    // Registrar el status "Descargado"
-    this.cardStatusService.registerStatus(this.card.cardId, 'Downloaded').subscribe({
-      next: () => console.log('Status Descargado registrado'),
-      error: (err) => console.error('Error al registrar status:', err),
-    });
+    if(this.isPlace === true) {
+      switch (label) {
+        case "Mapa de localización":
+          this.showLocation(this.card.cardId);
+          //console.log('Navigate to map')
+          break;
+        case "Restaurantes":
+          this.navigateToCategory('restaurants');
+          break;
+        case "Hoteles":
+          this.navigateToCategory('hotels');
+          break;
+        case "Atracciones":
+          this.navigateToCategory('attractions');
+          break;
+        default:
+          console.log('Opción:', label);
+      }
+    } else {
+      switch (label) {
+        case "Menu":
+          console.log('Navigate to menu')
+          break;
+        case "Galería de fotos":
+          console.log('Navigate to menu');
+          break;
+        case "Servicios extra":
+          console.log('Extra services');
+          break;
+        case "Información y reservaciones":
+          console.log('Information and reservations');
+          break;
+        case "Descarga tu cupón":
+          this.onDownloadClick();
+          break;
+        case "Mapa de localización":
+          this.showLocation(this.card.cardId);
+          //console.log('Navigate to map');
+          break;
+        default:
+          console.log('Opción:', label);
+      }
+    }
   }
 
-  downloadCard() {
-    if (!this.card?.image) {
-      console.error('No hay imagen para descargar');
-      return;
+  showLocation(cardId: number) {
+    const url = `/map/${cardId}`;
+    console.log('Navegando a:', url);
+    this.router.navigate([url]);
+  }
+
+
+  onDownloadClick() {
+    if (this.card) {
+      this.downloadService.downloadCard(this.card);
     }
+  }
 
-    fetch(this.card.image)
-      .then(response => response.blob())
-      .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-
-        const fileExtension = this.card?.image.split('.').pop()?.split('?')[0] || 'jpg';
-        const fileName = this.card?.cardName ? `${this.card.cardName}.${fileExtension}` : 'tarjeta.jpg';
-
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-      })
-      .catch(error => {
-        console.error('Error al descargar la imagen:', error);
-      });
+  navigateToCategory(category: string) {
+    if (this.card) {
+      this.router.navigate(['/places', this.card.cardId, category]);
+    }
   }
 }

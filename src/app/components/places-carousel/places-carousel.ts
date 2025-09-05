@@ -5,6 +5,7 @@ import { Card } from '../..//models/card.model';
 import { RouterModule } from '@angular/router';
 import { CardStatusService } from '../../services/card-status.service';
 import { PremiumCarousel } from '../premium-carousel/premium-carousel';
+import { NavigationStateService } from '../../services/navigation-state.service';
 
 @Component({
   selector: 'app-places-carousel',
@@ -21,10 +22,14 @@ export class PlacesCarousel implements OnInit {
   private isPointerDown = false;
   private cardStatusService = inject(CardStatusService);
 
-  constructor(private cardService: CardService) {}
+  constructor(
+    private cardService: CardService, 
+    private navigationState: NavigationStateService  
+  ) {}
 
   ngOnInit(): void {
-    this.cardService.getCardsByPlaceNull().subscribe((data) => {
+    this.navigationState.isFromDashboard = false;
+    this.cardService.getCardsByPlaceNull('Yes').subscribe((data) => {
       this.cards = data;
       this.startAutoplay();
     });

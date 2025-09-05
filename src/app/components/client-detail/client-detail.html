@@ -1,0 +1,30 @@
+<!-- place-detail.component.html -->
+<div class="place-detail" *ngIf="!loading && !error && place">
+  <h2 class="place-name">{{ place.cardName }}</h2>
+  <p><strong>Ciudad:</strong> {{ place.city }}</p>
+  <p><strong>Categoría:</strong> {{ place.category }}</p>
+  <p><strong>ID:</strong> {{ place.cardId }}</p>
+
+  <div class="image-container">
+    <img [src]="place.image" alt="{{ place.cardName }}" />
+  </div>
+
+  <div class="actions" *ngIf="!isFromDashboard">
+    <button class="download-btn" (click)="onDownloadClick()">
+      Descargar cupón
+    </button>
+  </div>
+
+  <div class="actions" *ngIf="isFromDashboard">
+    <button class="download-btn" (click)="onViewDashboard()">
+      Ver dashboard
+    </button>
+  </div>
+
+  <button class="download-btn" (click)="viewBackInfo()">
+      Ver reverso
+    </button>
+</div>
+
+<div *ngIf="loading">Cargando detalle...</div>
+<div *ngIf="error">{{ error }}</div>

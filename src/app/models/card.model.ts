@@ -8,6 +8,13 @@ export interface Card {
   isPremium: string;
   image: string;
   backImage: string;
+  lat: string;
+  long: string;
+  schedule: string;
+  phoneNumber: string;
+  web: string;
+  socialMedia: string;
+  characteristics: string;
   creationDate: string;
   updateDate: string | null;
 }

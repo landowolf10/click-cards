@@ -63,7 +63,7 @@
   </section>
 
   <!-- Filtro por Ciudad -->
-    <section class="city-filter-section">
+    <!--<section class="city-filter-section">
     <h3>Filtro por ciudad</h3>
     <select [(ngModel)]="selectedCity" class="dropdown" (change)="onCityChange($event)">
         <option value="">Ciudades</option>
@@ -80,15 +80,9 @@
             <h3>{{ cityData?.downloadedCount }}</h3>
         </div>
     </div>
-    </section>
+    </section> -->
 
-    <!-- Manejo de Usuarios -->
     <section class="user-management-section">
-    <h3>Manejo de usuarios</h3>
-    <button class="btn green" (click)="viewAssociates()">Ver asociados</button>
-    <button class="btn light-green">Crear asociado</button>
-    <button class="btn blue">Actualizar asociado</button>
-    <button class="btn red">Eliminar asociado</button>
-    <button class="btn black">Cerrar sesión</button>
+        <button class="btn black">Cerrar sesión</button>
     </section>
 </div>

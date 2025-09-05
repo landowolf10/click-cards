@@ -3,7 +3,10 @@
 
   <!-- Grid con 6 tarjetas -->
   <div class="card-grid">
-    <div class="card-tile" *ngFor="let label of labels">
+    <div 
+      class="card-tile" 
+      *ngFor="let label of (isPlace ? labels : normalCardLabels)" 
+      (click)="onLabelClick(label)">
       {{ label }}
     </div>
   </div>

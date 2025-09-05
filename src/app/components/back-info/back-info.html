@@ -1,0 +1,7 @@
+<div class="back-info" *ngIf="location">
+  <p><strong>Horario:</strong> {{ location.schedule }}</p>  
+  <p><strong>Teléfono:</strong> {{ location.phoneNumber }}</p>
+
+  <!-- Mapa -->
+  <app-map-location [lat]="location.lat" [lng]="location.long"></app-map-location>
+</div>

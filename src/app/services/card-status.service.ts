@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CardStatusService {
-  private baseUrl = 'http://192.168.0.12:8000/api/v1';
+  private baseUrl = 'http://192.168.0.6:8000/api/v1';
 
   constructor(private http: HttpClient) {}
 

@@ -10,7 +10,7 @@
     *ngFor="let card of cards; let i = index"
     [style.transform]="getTransform(i)"
     [class.active]="i === currentIndex"
-    [routerLink]="['/card', card.cardId]"
+    [routerLink]="['/card', card.cardId]" [queryParams]="{ isPlace: false }"
   >
     <img 
       [src]="card.image" 

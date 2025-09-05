@@ -1,0 +1,18 @@
+<!-- src/app/components/associated-list/associated-list.html -->
+<div class="associated-container">
+  <h2>Lista de asociados</h2>
+
+  <div *ngIf="loading" class="loading">Cargando asociados...</div>
+
+  <ul *ngIf="!loading && associates.length > 0" class="associated-list">
+    <li *ngFor="let a of associates" (click)="goToDetail(a.cardId)">
+        <span class="id">#{{ a.cardId }}</span>
+        <span class="name">{{ a.cardName }}</span>
+    </li>
+    </ul>
+
+
+  <div *ngIf="!loading && associates.length === 0" class="empty">
+    No hay asociados registrados.
+  </div>
+</div>

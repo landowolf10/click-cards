@@ -1,0 +1,23 @@
+<div class="places-container">
+  <h2>{{ categoryName }} - Lugares relacionados</h2>
+  
+  <div *ngIf="loading" class="loading">
+    <p>Cargando lugares...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadPlaces()">Reintentar</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="places-list">
+    <div *ngFor="let place of places" class="place-card" (click)="navigateToPlaceDetail(place)">
+      <h3>{{ place.placeName }}</h3>
+      <p><strong>Categoría:</strong> {{ place.category }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !error && places.length === 0" class="no-places">
+    <p>No hay {{ categoryName.toLowerCase() }} disponibles</p>
+  </div>
+</div>
